@@ -9,8 +9,7 @@ count(*)
 from actor
 group by actors_category
 
-2.select * from rental
-
+2.
 with cte1 as (
 select date(rental_date) as dt,count(*) as num_rentals
 from rental	
