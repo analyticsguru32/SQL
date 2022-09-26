@@ -1,0 +1,28 @@
+1.
+select 
+case when first_name ilike('a%') then 'a_actors'
+	 when first_name ilike('b%') then 'b_actors'
+	 when first_name ilike('c%') then 'c_actors'
+else 'other_actors'
+end as actors_category,
+count(*)
+from actor
+group by actors_category
+
+2.select * from rental
+
+with cte1 as (
+select date(rental_date) as dt,count(*) as num_rentals
+from rental	
+group by dt
+			)
+select sum(case 
+		   when num_rentals>100 then 1
+		   else 0
+		   end) as good_days,
+		sum(case 
+		    when num_rentals<100 then 1
+			else 0
+		    end) as bad_days
+from cte1;
+			
