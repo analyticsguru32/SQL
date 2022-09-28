@@ -1,0 +1,16 @@
+with cte1 as(
+select customer_id,avg(extract(day from (return_date-rental_date))+1) as avg_no_of_days
+from rental
+where return_date is not null
+group by customer_id
+order by customer_id
+			)
+
+select 
+case 
+	when avg_no_of_days<=5 then 'fast_watcher'
+	else 'slow_watcher'
+end as watcher_category,count(*) as count
+from cte1
+group by watcher_category
+order by watcher_category
