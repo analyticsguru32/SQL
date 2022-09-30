@@ -1,0 +1,12 @@
+with cte1 as(
+select actor_id,count(*) as num_of_movies
+from film_actor
+group by actor_id
+order by num_of_movies desc
+limit 1
+			)
+
+select first_name,last_name,x.actor_id,num_of_movies
+from actor a
+join cte1 x
+on a.actor_id=x.actor_id
