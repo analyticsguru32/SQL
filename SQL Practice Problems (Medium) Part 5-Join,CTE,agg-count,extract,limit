@@ -1,0 +1,18 @@
+/*Write a query to return the first and last name of the customer who made the most
+rental transactions in May 2007. */
+
+
+
+with cte1 as(
+select customer_id,count(payment_id) as no_of_rental_transaction
+from payment
+where extract(year from payment_date)=2007 and extract(month from payment_date)=5 
+group by customer_id
+order by no_of_rental_transaction desc
+limit 1
+			)
+
+select c.first_name,c.last_name, c.customer_id,cte1.no_of_rental_transaction
+from customer c
+join cte1
+on c.customer_id=cte1.customer_id
