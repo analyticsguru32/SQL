@@ -1,0 +1,13 @@
+with cte1 as(
+select customer_id,sum(amount) as amt
+from payment
+where extract(year from payment_date)=2007 and extract(month from payment_date)=2
+group by customer_id
+order by amt desc
+limit 1
+			)
+
+select first_name,last_name,x.customer_id
+from customer y
+join cte1 x
+on x.customer_id=y.customer_id
