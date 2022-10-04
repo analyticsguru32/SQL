@@ -1,0 +1,5 @@
+--Write a query to return the average cost on movie rentals in May 2007 per transaction.
+
+select avg(amount)
+from payment
+where extract(year from payment_date)=2007 and extract(month from payment_date)=5
