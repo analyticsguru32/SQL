@@ -1,0 +1,11 @@
+--Write a query to return the average movie rental spend per customer in Feb 2007.
+
+with cte1 as (
+select customer_id,sum(amount) as amt_spent
+from payment
+where extract(year from payment_date)=2007 and extract(month from payment_date)=2
+group by customer_id	
+			  )
+			  
+select avg(amt_spent) as avg_amt_spent
+from cte1
