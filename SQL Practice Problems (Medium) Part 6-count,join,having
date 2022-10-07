@@ -1,0 +1,14 @@
+--Write a query to return the titles of the films with >= 10 actors.
+
+with cte1 as(
+select film_id,count(actor_id) as no_of_actors
+from film_actor
+group by film_id
+			)
+
+select f.title,no_of_actors
+from film f
+join cte1 c
+on f.film_id=c.film_id
+where no_of_actors>10
+order by no_of_actors desc
