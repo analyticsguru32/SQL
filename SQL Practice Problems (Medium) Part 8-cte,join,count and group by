@@ -1,0 +1,14 @@
+--Write a query to return the title of the film with the largest cast (most actors).
+
+with cte1 as(
+select film_id,count(actor_id) as no_of_actors
+from film_actor
+group by film_id
+order by no_of_actors desc
+limit 1
+			       )
+
+select f.title,c.no_of_actors
+from film f
+join cte1 c
+on f.film_id=c.film_id
