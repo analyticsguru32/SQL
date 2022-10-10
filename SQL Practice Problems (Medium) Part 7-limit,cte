@@ -1,11 +1,16 @@
---	1. Write a query to return the title of the film with the minimum duration.
---	2. Write a query to return the title of the second shortest film based on its duration/length.
+--Write a query to return the title of the film with the minimum duration.
 
+select title,length 
+from film
+order by length 
+limit 1
+
+--Write a query to return the title of the second shortest film based on its duration/length.
 
 with cte1 as(
-select title,length
+select title,length 
 from film
-order by length
+order by length 
 limit 2
 			)
 			
