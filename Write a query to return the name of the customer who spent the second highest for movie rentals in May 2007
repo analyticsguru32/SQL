@@ -1,0 +1,20 @@
+--Write a query to return the name of the customer who spent the second highest for
+--movie rentals in May 2007.
+
+--select * from payment
+
+with cte1 as (
+select customer_id,sum(amount) as amount_spent
+from payment
+where payment_date>='01-05-2007' and payment_date<='31-05-2007'
+group by customer_id
+order by amount_spent desc
+limit 2
+			 )
+			 
+select cu.first_name,c.customer_id,c.amount_spent
+from customer cu
+join cte1 c
+on c.customer_id=cu.customer_id
+order by c.amount_spent asc
+limit 1
