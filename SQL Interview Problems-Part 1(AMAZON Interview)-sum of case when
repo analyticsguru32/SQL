@@ -1,0 +1,48 @@
+--create table and insert values
+
+create table payments_data(
+tx_date date,
+merchant varchar(20),
+amount int,
+payment_mode varchar(20)
+);
+
+insert into payments_data(tx_date,merchant,amount,payment_mode)
+values
+('2022-04-02','merchant_1',150,'cash'),
+('2022-04-02','merchant_1',500,'online'),
+('2022-04-03','merchant_2',450,'online'),
+('2022-04-03','merchant_1',100,'cash'),
+('2022-04-03','merchant_3',600,'cash'),
+('2022-04-05','merchant_5',200,'online'),
+('2022-04-05','merchant_2',100,'online');
+
+--Write a SQL query to return the total amount received by each merchant via cash and online mode.
+
+select merchant,
+		sum(case
+				when payment_mode='cash' then amount
+				else 0
+			end) as cash_amount,
+		sum(case
+		   		when payment_mode='online' then amount
+				else 0
+			end) as online_amount
+from payments_data
+group by merchant
+order by merchant
+
+--Write a SQL query to return the total number of times amount is received by each merchant via cash and online mode
+
+select merchant,
+		sum(case
+				when payment_mode='cash' then 1
+				else 0
+			end) as cash_amount,
+		sum(case
+		   		when payment_mode='online' then 1
+				else 0
+			end) as online_amount
+from payments_data
+group by merchant
+order by merchant
