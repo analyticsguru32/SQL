@@ -1,0 +1,13 @@
+--Write a query to return the total number of customers who didn't rent any movies in May
+2020.
+
+--concept used is subquery
+
+select count(*)
+from customer
+where customer_id not in(
+select customer_id
+from rental
+WHERE DATE(rental_ts) >= '2020-05-01'
+AND DATE(rental_ts) <= '2020-05-31' 
+  					)
