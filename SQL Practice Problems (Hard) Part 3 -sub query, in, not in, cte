@@ -1,0 +1,21 @@
+--Write a query to return the number of films with no rentals in May 2005.
+
+with rented_film as
+(
+	select distinct film_id
+from inventory
+where inventory_id in (
+select inventory_id 
+from rental
+where date(rental_date)>='01-05-2005' and date(rental_date)<='31-05-2005'
+					  )
+)
+		
+select count(*)
+from film
+where film_id not in(
+select film_id
+from rented_film
+)
+
+					
