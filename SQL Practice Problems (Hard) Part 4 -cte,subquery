@@ -1,0 +1,18 @@
+--Write a query to return the number of customers who rented at least one movie in both
+--May 2005 and June 2005.
+
+with may_data as(
+select  distinct customer_id
+from rental
+where date(rental_date)>='01-05-2005' and date(rental_date)<='31-05-2005'
+order by customer_id
+				)
+
+select count(distinct customer_id) as no_of_returning_customer
+from rental
+where date(rental_date)>='01-06-2005' 
+and date(rental_date)<='30-06-2005'
+and customer_id in (
+select customer_id
+from may_data
+)
