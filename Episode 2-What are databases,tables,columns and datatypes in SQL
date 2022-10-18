@@ -1,0 +1,10 @@
+--Write a query to return the titles of movies with more than >7 dvd copies in the
+--inventory.
+
+select title as heavily_stocked_movies
+from film
+where film_id in(
+select film_id
+from inventory
+group by film_id
+having count(inventory_id)>7)
