@@ -1,0 +1,27 @@
+--Write a query to return the top 5 search terms with the highest click through rate on
+new year's day (2021-01-01)
+•
+The search term has to be searched by more than 2 (>2) distinct users.
+•
+Click through rate: number of searches end up with at least one click.
+
+
+Solution
+WITH click_through_rate AS (
+SELECT
+S.query,
+1 1 3
+COUNT(DISTINCT CASE WHEN action='click' THEN S.search_id ELSE NULL
+END) * 100/COUNT(DISTINCT S.search_id) ctr
+FROM
+search S
+INNER JOIN search_result R
+ON S.search_id = R.search_id
+WHERE S.date = '2021-01-01'
+GROUP BY S.query
+HAVING COUNT(DISTINCT S.user_id) > 2
+)
+SELECT query
+FROM click_through_rate
+ORDER BY ctr DESC
+LIMIT 5;
