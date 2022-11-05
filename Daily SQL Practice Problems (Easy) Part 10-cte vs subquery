@@ -1,0 +1,12 @@
+Write a query to return the name of the top song in the US yesterday
+
+
+SELECT title FROM SONG
+WHERE song_id IN (
+SELECT d.song_id, s.name, d.plays
+FROM daily_plays d
+WHERE d.country = 'US'
+AND d.date = CURRENT_DATE - 1
+ORDER BY plays DESC
+LIMIT 1
+);
