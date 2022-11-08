@@ -1,0 +1,17 @@
+Write a query to return the top 5 artists id for US yesterday.
+
+WITH artist_plays AS (
+SELECT
+S.artist_id,
+P.country,
+SUM(num_plays) num_plays
+FROM song_plays P
+INNER JOIN song S
+ON S.song_id = P.song_id
+WHERE P.date = CURRENT_DATE - 1
+GROUP BY 1,2
+)
+SELECT artist_id
+FROM artist_plays
+ORDER BY num_plays DESC
+LIMIT 5;
