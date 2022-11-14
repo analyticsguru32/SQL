@@ -1,0 +1,25 @@
+--Return the name of the category that has the most films.
+
+with cte1 as( select category_id,count(film_id) as nof
+			 from film_category
+			 group by category_id
+			 order by nof desc
+			 limit 1
+			)
+		
+select c.name,cte1.nof
+from category c
+inner join cte1
+on c.category_id=cte1.category_id
+
+
+
+--alt
+select c.name
+from category c
+inner join film_category fc
+on c.category_id=fc.category_id
+group by c.category_id
+order by count(*) desc
+limit 1
+		
