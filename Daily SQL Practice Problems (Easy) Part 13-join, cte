@@ -1,0 +1,12 @@
+--Most productive actor with inner join
+
+with cte1 as (select actor_id,count(film_id) as nof
+			 from film_actor
+			 group by actor_id
+			 order by nof desc
+			 limit 1)		 
+
+select a.actor_id,a.first_name,a.last_name,cte1.nof
+from actor a
+join cte1
+on a.actor_id=cte1.actor_id
