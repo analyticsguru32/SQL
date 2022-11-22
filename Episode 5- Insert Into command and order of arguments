@@ -1,0 +1,28 @@
+--Use SQL without Installation-https://pg-sql.com/
+
+--How to create table
+CREATE table covid_table(
+  iso_code varchar(20),
+  continent varchar(20),
+  LOCATION varchar(20),
+  date_covid date,
+  population int,
+  total_cases int);
+  
+--Insert values into table
+INSERT INTO covid_table(iso_code,continent,location,date_covid,population,total_cases)
+VALUES
+('IND','Asia','India','01-01-2020',1407563842,1),
+('IND','Asia','India','04-05-2020',1455563842,5),
+('IND','Asia','India','6-07-2020',1405563842,75),
+('IND','Asia','India','5-02-2020',1407553842,4);
+
+
+
+INSERT INTO covid_table(continent,iso_code,location,date_covid,population,total_cases)
+VALUES
+('Asia','IND','India','25-01-2020',14079999,5);
+
+INSERT INTO covid_table(continent,iso_code,location,date_covid,total_cases)
+VALUES
+('Asia','IND','India','25-01-2020',5);
