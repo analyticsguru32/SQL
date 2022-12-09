@@ -1,0 +1,18 @@
+create table laptop
+(
+name varchar(20),
+manufacturer varchar(20),
+price int,
+units int
+);
+
+insert into laptop(name,manufacturer,price,units)
+values
+('x250','dell',25000,5),
+('y250','hp',35000,10),
+('z250','acer',45000,15);
+
+select * from laptop
+
+select name,manufacturer,price,units,Price*units as revenue
+from laptop
