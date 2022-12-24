@@ -1,0 +1,19 @@
+select * from covid_table
+
+select location || continent
+from covid_table
+
+select location || ', ' || continent
+from covid_table
+
+select concat(location,continent)
+from covid_table
+
+select concat(location,', ', continent)
+from covid_table
+
+select concat(upper(location),', ', upper(continent))
+from covid_table
+
+select upper(concat(location,', ', continent))
+from covid_table
