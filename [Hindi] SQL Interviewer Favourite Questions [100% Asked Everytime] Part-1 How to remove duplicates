@@ -1,0 +1,32 @@
+CREATE table covid_table(
+  iso_code varchar(20),
+  continent varchar(20),
+  LOCATION varchar(20),
+  date_covid date,
+  population int,
+  total_cases int);
+
+  select * from covid_table
+
+INSERT INTO covid_table(iso_code,continent,location,date_covid,population,total_cases)
+VALUES
+('IND','Asia','India','01-01-2020',1407563842,1),
+('IND','Asia','India','04-05-2020',1455563842,5),
+('IND','Asia','India','6-07-2020',1405563842,75),
+('IND','Asia','India','5-02-2020',1407553842,4),
+('IND','Asia','India','5-02-2020',1407553842,4);
+
+select * into covid_table1
+from covid_table
+
+select total_cases,count(1) as cn from covid_table group by total_cases having count(1)>1
+
+select total_cases, row_number() over(partition by total_cases order by total_cases) as rn from covid_table1
+
+with cte1 as(
+select total_cases, row_number() over(partition by total_cases order by total_cases) as rn from covid_table1
+
+)
+
+delete from cte1
+where rn>1
