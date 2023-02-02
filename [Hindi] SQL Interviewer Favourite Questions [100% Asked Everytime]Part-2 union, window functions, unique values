@@ -1,0 +1,14 @@
+[Hindi] SQL Interviewer Favourite Questions [100% Asked Everytime]Part-2 union, window functions, unique values 
+
+select * from covid_table
+select * from covid_table1
+
+select total_cases from covid_table
+union all
+select total_cases from covid_table1
+
+insert into covid_table(iso_code,continent,location,date_covid,population,total_cases)
+values
+('IND','Asia','India','2020-12-01',5555555,9);
+
+select total_cases from covid_table where total_cases not in (select total_cases from covid_table1)
